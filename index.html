@@ -5,9 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TodoTypeFa</title>
   </head>
-  <body>
+  <body class="bg-slate-800">
     <div id="app">
-      <p class="text-red-500">ali</p>
+      <form
+        action=""
+        class="flex flex-col max-w-xl gap-4 p-4 m-8 mx-auto bg-slate-600 rounded-2xl"
+      >
+        <input
+          type="text"
+          placeholder="title"
+          id="title"
+          class="p-2 text-black rounded-lg bg-slate-200"
+        />
+
+        <input
+          type="text"
+          placeholder="note"
+          id="note"
+          class="p-2 text-black rounded-lg bg-slate-200"
+        />
+
+        <button class="px-4 py-2 mx-auto bg-yellow-500 rounded-md max-w-20">
+          add
+        </button>
+      </form>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
