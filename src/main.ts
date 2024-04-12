@@ -27,13 +27,16 @@ form?.addEventListener("submit", (e) => {
     text: text?.value,
   };
   addNote(listNote);
+
+  title.value = "";
+  text.value = "";
 });
 
 // create Function Declaration for  render object to window
 function addNote(itemNote: itemType) {
   /* createElement */
   const container = document.createElement("div");
-  const titleElement = document.createElement("p");
+  const titleElement = document.createElement("h2");
   const textElement = document.createElement("p");
 
   //  append Elements
@@ -41,6 +44,16 @@ function addNote(itemNote: itemType) {
   textElement.append(itemNote.text);
   container.append(titleElement, textElement);
   noteList?.append(container);
+
+  container.classList.add(
+    "p-4",
+    "bg-slate-400",
+    "max-w-6xl",
+    "rounded",
+    "w-3/4",
+    "m-4"
+  );
+  titleElement.classList.add("text-2xl", "text-blue-800");
 }
 
 //? the second method
@@ -67,3 +80,5 @@ function addNote(itemNote: itemType) {
 //     title.value = "";
 //     text.value = "";
 //   });
+
+// titleElement.style.fontSize = "1.5rem";
