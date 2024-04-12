@@ -12,7 +12,7 @@ type itemType = {
 const form = document.querySelector<HTMLFormElement>("#note-form");
 const title = document.querySelector<HTMLInputElement>("#title");
 const text = document.querySelector<HTMLInputElement>("#text");
-const noteList = document.querySelector<HTMLDivElement>("#itemNote");
+const noteList = document.querySelector<HTMLDivElement>("#itemNote")!;
 let noteLocalStorage: itemType[] = parsLocalStorage();
 noteLocalStorage.forEach(addNote);
 const clearButton = document.querySelector("#clear-notes");
@@ -53,7 +53,12 @@ function addNote(itemNote: itemType) {
   const deleteButton = document.createElement("button");
 
   //  append Elements
-  deleteButton.textContent = "delete";
+  //   deleteButton.textContent = "delete";
+  deleteButton.innerHTML = `
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-red-500 hover:text-red-700">
+    <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+  </svg>
+`;
 
   titleElement.append(itemNote.title);
   textElement.append(itemNote.text);
@@ -69,7 +74,7 @@ function addNote(itemNote: itemType) {
     "m-4"
   );
   titleElement.classList.add("text-2xl", "text-blue-800");
-
+  deleteButton.classList.add("float-right");
   deleteButton.addEventListener("click", () => {
     deleteNoteFromLocalStorage(itemNote.id);
     container.remove();
