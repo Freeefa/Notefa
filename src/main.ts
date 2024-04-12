@@ -13,7 +13,7 @@ const form = document.querySelector<HTMLFormElement>("#note-form");
 const title = document.querySelector<HTMLInputElement>("#title");
 const text = document.querySelector<HTMLInputElement>("#text");
 const noteList = document.querySelector<HTMLDivElement>("#itemNote");
-const noteLocalStorage: itemType[] = parsLocalStorage();
+let noteLocalStorage: itemType[] = parsLocalStorage();
 noteLocalStorage.forEach(addNote);
 const clearButton = document.querySelector("#clear-notes");
 
@@ -50,11 +50,14 @@ function addNote(itemNote: itemType) {
   const container = document.createElement("div");
   const titleElement = document.createElement("h2");
   const textElement = document.createElement("p");
+  const deleteButton = document.createElement("button");
 
   //  append Elements
+  deleteButton.textContent = "delete";
+
   titleElement.append(itemNote.title);
   textElement.append(itemNote.text);
-  container.append(titleElement, textElement);
+  container.append(titleElement, textElement, deleteButton);
   noteList?.append(container);
 
   container.classList.add(
@@ -66,6 +69,11 @@ function addNote(itemNote: itemType) {
     "m-4"
   );
   titleElement.classList.add("text-2xl", "text-blue-800");
+
+  deleteButton.addEventListener("click", () => {
+    deleteNoteFromLocalStorage(itemNote.id);
+    container.remove();
+  });
 }
 
 function saveLocalStorage() {
@@ -84,9 +92,11 @@ function clearLocalStorage(): void {
   noteLocalStorage = [];
 }
 
-
-
-
+// Function to delete a note from localStorage
+function deleteNoteFromLocalStorage(noteId: string): void {
+  noteLocalStorage = noteLocalStorage.filter((note) => note.id !== noteId);
+  saveLocalStorage();
+}
 
 //? the second method
 //!add event listener for select element and print in console
