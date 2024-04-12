@@ -10,6 +10,7 @@
       <form
         action=""
         class="flex flex-col max-w-xl gap-4 p-4 m-8 mx-auto bg-slate-600 rounded-2xl"
+        id="note-form"
       >
         <input
           type="text"
@@ -20,16 +21,22 @@
 
         <input
           type="text"
-          placeholder="note"
-          id="note"
+          placeholder="text"
+          id="text"
           class="p-2 text-black rounded-lg bg-slate-200"
         />
 
-        <button class="px-4 py-2 mx-auto bg-yellow-500 rounded-md max-w-20">
+        <button
+          id="btn"
+          class="px-4 py-2 mx-auto bg-yellow-500 rounded-md max-w-20"
+        >
           add
         </button>
       </form>
     </div>
+
+    <div id="itemNote"></div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
